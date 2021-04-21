@@ -1,5 +1,5 @@
 package com.ggv.cryptocurrencystore.auth;
-
+import com.ggv.cryptocurrencystore.R;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
