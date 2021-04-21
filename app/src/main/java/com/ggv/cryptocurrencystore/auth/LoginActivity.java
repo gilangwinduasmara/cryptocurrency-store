@@ -3,7 +3,7 @@ package com.ggv.cryptocurrencystore.auth;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-
+import com.ggv.cryptocurrencystore.R;
 public class LoginActivity extends AppCompatActivity {
 
     @Override
