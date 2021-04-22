@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Cryptocurrency Store</string>
+    <string name="host">http://54.151.229.213:8000</string>
 </resources>

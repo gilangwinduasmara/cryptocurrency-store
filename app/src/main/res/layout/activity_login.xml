@@ -38,6 +38,7 @@
             tools:layout_editor_absoluteY="295dp" />
 
         <EditText
+            android:id="@+id/editTextUsername"
             android:layout_width="290dp"
             android:layout_height="match_parent"
             android:hint="masukan Username"
@@ -52,12 +53,14 @@
             tools:layout_editor_absoluteY="295dp" />
 
         <EditText
+            android:id="@+id/editTextPassword"
             android:layout_width="290dp"
             android:layout_height="match_parent"
             android:hint="masukan password"/>
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnMasuk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="220dp"
