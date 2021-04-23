@@ -14,6 +14,7 @@ import com.ggv.cryptocurrencystore.R;
 public class RegisterActivity extends AppCompatActivity {
     Button button;
     EditText editTxtName, editTxtUser, editTxtEmail, editTxtPas;
+    TextView txtLogin;
     Intent intent;
 
     int success;
@@ -38,8 +39,9 @@ public class RegisterActivity extends AppCompatActivity {
         editTxtUser = findViewById(R.id.editTxtUser);
         editTxtEmail = findViewById(R.id.editTxtEmail);
         editTxtPas = findViewById(R.id.editTextPassword);
+        txtLogin = findViewById(R.id.txtLogin);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        txtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(RegisterActivity.this, LoginActivity.class);
