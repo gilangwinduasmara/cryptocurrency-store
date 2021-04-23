@@ -1,5 +1,6 @@
 package com.ggv.cryptocurrencystore.auth;
 import com.android.volley.VolleyError;
+import com.ggv.cryptocurrencystore.MainActivity;
 import com.ggv.cryptocurrencystore.R;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,9 +47,12 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(JSONObject response) {
                         try {
-                            Log.d("auth", response.toString());
+                            Log.d("login", response.toString());
                             editor.putString("token", response.getString("token"));
                             editor.commit();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -56,12 +60,12 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onFail(JSONObject response) {
-
+                        Log.d("login", response.toString());
                     }
 
                     @Override
                     public void onError(VolleyError error) {
-
+                        error.printStackTrace();
                     }
                 });
 
