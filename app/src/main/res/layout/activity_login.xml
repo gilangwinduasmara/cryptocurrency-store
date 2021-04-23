@@ -41,7 +41,7 @@
             android:id="@+id/editTextUsername"
             android:layout_width="290dp"
             android:layout_height="match_parent"
-            android:hint="masukan Username"
+            android:hint="Input Your Username"
             />
 
         <TextView
@@ -56,7 +56,8 @@
             android:id="@+id/editTextPassword"
             android:layout_width="290dp"
             android:layout_height="match_parent"
-            android:hint="masukan password"/>
+            android:inputType="textPassword"
+            android:hint="Input Your password"/>
     </LinearLayout>
 
     <Button
@@ -64,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="180dp"
-        android:text="Masuk"
+        android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -74,9 +75,9 @@
         android:id="@+id/txtRegis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="180dp"
-        android:layout_marginBottom="152dp"
-        android:text="Register"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="148dp"
+        android:text="You have account? Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
