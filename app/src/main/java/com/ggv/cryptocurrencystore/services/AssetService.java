@@ -1,6 +1,8 @@
 package com.ggv.cryptocurrencystore.services;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -18,6 +20,8 @@ import java.util.Map;
 
 public class AssetService {
 
+    private String token;
+
     public interface ResultListener {
         void onSuccess(JSONObject response);
         void onFail(JSONObject response);
@@ -28,6 +32,8 @@ public class AssetService {
 
     public AssetService(Context context){
         this.context = context;
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        this.token = sharedPref.getString("token", "");
     }
 
 
@@ -43,7 +49,7 @@ public class AssetService {
 //            e.printStackTrace();
 //        }
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.POST, url, body, new Response.Listener<JSONObject>() {
+                (Request.Method.GET, url, body, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
@@ -79,6 +85,7 @@ public class AssetService {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("Authorization", "Bearer "+token);
                 return headers;
             }
         };
