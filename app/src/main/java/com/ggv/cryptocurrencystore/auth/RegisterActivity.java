@@ -40,7 +40,6 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         button = findViewById(R.id.button);
         editTxtName = findViewById(R.id.editTxtName);
         editTxtUser = findViewById(R.id.editTxtUser);

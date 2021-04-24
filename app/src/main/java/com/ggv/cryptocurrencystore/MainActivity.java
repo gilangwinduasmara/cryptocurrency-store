@@ -24,12 +24,15 @@ public class MainActivity extends AppCompatActivity {
         String token = sharedPref.getString("token", "");
         Log.d("token", token);
         if(token.isEmpty()){
-            intent = new Intent(MainActivity.this, LoginActivity.class);
+            intent = new Intent(MainActivity.this, OnBoardingActivity.class);
             finish();
             startActivity(intent);
         }else{
 //            ke dashboard
-            Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+            intent = new Intent(MainActivity.this, DashboardActivity.class);
+            finish();
+            startActivity(intent);
+//            Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
         }
 
     }
