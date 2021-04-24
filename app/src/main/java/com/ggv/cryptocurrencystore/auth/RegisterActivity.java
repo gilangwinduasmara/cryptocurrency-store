@@ -104,12 +104,12 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
                 if(user.isEmpty()){
-                    Toast.makeText(context,"Sorry. Please Input Your Full Name",
+                    Toast.makeText(context,"Sorry. Please Input Your Username",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(email.isEmpty()){
-                    Toast.makeText(context,"Sorry. Please Input Your Password",
+                    Toast.makeText(context,"Sorry. Please Input Your Email",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
