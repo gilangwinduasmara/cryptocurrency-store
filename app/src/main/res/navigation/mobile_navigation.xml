@@ -22,4 +22,9 @@
         android:name="com.ggv.cryptocurrencystore.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_assets"
+        android:name="com.ggv.cryptocurrencystore.ui.assets.AssetsFragment"
+        android:label="fragment_assets"
+        tools:layout="@layout/fragment_assets" />
 </navigation>
