@@ -101,7 +101,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         List<Slide> slides = new ArrayList<>();
         slides.add(new Slide(R.drawable.ic_undraw_crypto_portfolio_2jy5, "Track Crypto Prices", "Knowing coin market price is always interisting and useful"));
         slides.add(new Slide(R.drawable.ic_undraw_payments_re_77x0, "Fast Deposit and Withdrawal", "With Several Methods"));
-        slides.add(new Slide(R.drawable.ic_undraw_crypto_portfolio_2jy5, "Detailed order information", "Reliable Trading Platform For Professionals"));
+        slides.add(new Slide(R.drawable.ic_undraw_stock_prices_re_js33, "Detailed order information", "Reliable Trading Platform For Professionals"));
         onboardingAdapter = new OnBoardingAdapter(slides);
     }
 }
