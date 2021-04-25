@@ -92,7 +92,23 @@ public class AssetsFragment extends Fragment {
                     for(int i = 0; i < assetsResponse.length(); i++){
                         JSONObject assetObject = assetsResponse.getJSONObject(i);
                         Asset asset = new Asset();
+                        asset.setAsset_id(assetObject.getString("asset_id"));
                         asset.setName(assetObject.getString("name"));
+                        asset.setType_is_crypto(assetObject.getString("type_is_crypto"));
+                        asset.setData_start(assetObject.getString("data_start"));
+                        asset.setData_end(assetObject.getString("data_end"));
+                        asset.setData_quote_start(assetObject.getString("data_quote_start"));
+                        asset.setData_quote_end(assetObject.getString("data_quote_end"));
+                        asset.setData_orderbook_start(assetObject.getString("data_orderbook_start"));
+                        asset.setData_orderbook_end(assetObject.getString("data_orderbook_end"));
+                        asset.setData_trade_start(assetObject.getString("data_trade_start"));
+                        asset.setData_trade_end(assetObject.getString("data_trade_end"));
+                        asset.setData_symbols_count(assetObject.getString("data_symbols_count"));
+                        asset.setVolume_1hrs_usd(assetObject.getString("volume_1hrs_usd"));
+                        asset.setVolume_1day_usd(assetObject.getString("volume_1day_usd"));
+                        asset.setVolume_1mth_usd(assetObject.getString("volume_1mth_usd"));
+                        asset.setPrice_usd(assetObject.getString("price_usd"));
+                        asset.setId_icon(assetObject.getString("id_icon"));
                         assets.add(asset);
                         Log.d("asset name", asset.getName());
                     }

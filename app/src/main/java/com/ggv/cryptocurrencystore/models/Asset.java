@@ -1,5 +1,7 @@
 package com.ggv.cryptocurrencystore.models;
 
+import android.util.Log;
+
 public class Asset {
     private String asset_id;
     private String name;
@@ -16,13 +18,13 @@ public class Asset {
     private String volume_1hrs_usd;
     private String volume_1day_usd;
     private String volume_1mth_usd;
-    private String price_id;
+    private String price_usd;
     private String id_icon;
 
     public Asset() {
     }
 
-    public Asset(String asset_id, String name, String type_is_crypto, String data_start, String data_end, String data_quote_start, String data_quote_end, String data_orderbook_start, String data_orderbook_end, String data_trade_start, String data_trade_end, String data_symbols_count, String volume_1hrs_usd, String volume_1day_usd, String volume_1mth_usd, String price_id, String id_icon) {
+    public Asset(String asset_id, String name, String type_is_crypto, String data_start, String data_end, String data_quote_start, String data_quote_end, String data_orderbook_start, String data_orderbook_end, String data_trade_start, String data_trade_end, String data_symbols_count, String volume_1hrs_usd, String volume_1day_usd, String volume_1mth_usd, String price_usd, String id_icon) {
         this.asset_id = asset_id;
         this.name = name;
         this.type_is_crypto = type_is_crypto;
@@ -38,7 +40,7 @@ public class Asset {
         this.volume_1hrs_usd = volume_1hrs_usd;
         this.volume_1day_usd = volume_1day_usd;
         this.volume_1mth_usd = volume_1mth_usd;
-        this.price_id = price_id;
+        this.price_usd = price_usd;
         this.id_icon = id_icon;
     }
 
@@ -162,12 +164,12 @@ public class Asset {
         this.volume_1mth_usd = volume_1mth_usd;
     }
 
-    public String getPrice_id() {
-        return price_id;
+    public String getPrice_usd() {
+        return price_usd;
     }
 
-    public void setPrice_id(String price_id) {
-        this.price_id = price_id;
+    public void setPrice_usd(String price_usd) {
+        this.price_usd = price_usd;
     }
 
     public String getId_icon() {
@@ -175,6 +177,10 @@ public class Asset {
     }
 
     public void setId_icon(String id_icon) {
+        if(id_icon != null){
+            id_icon = id_icon.replaceAll("-","");
+            id_icon += ".png";
+        }
         this.id_icon = id_icon;
     }
 
