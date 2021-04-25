@@ -18,8 +18,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AssetService {
-
+public class TransactionService {
     private String token;
 
     public interface ResultListener {
@@ -30,15 +29,14 @@ public class AssetService {
 
     Context context;
 
-    public AssetService(Context context){
+    public TransactionService(Context context){
         this.context = context;
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         this.token = sharedPref.getString("token", "");
     }
 
-
     public void get(AssetService.ResultListener listener){
-        String url ="http://54.151.229.213:8000/assets";
+        String url ="http://54.151.229.213:8000/transactions/user";
 
         RequestQueue queue = Volley.newRequestQueue(context);
         JSONObject body = new JSONObject();
@@ -58,21 +56,17 @@ public class AssetService {
                             e.printStackTrace();
                         }
 
-                        // textView.setText("Response: " + response.toString());
                     }
                 }, new Response.ErrorListener() {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
                         listener.onError(error);
                     }
                 }){
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<String, String>();
-//                params.put("username", username);
-//                params.put("password", password);
                 return params;
             }
             @Override
