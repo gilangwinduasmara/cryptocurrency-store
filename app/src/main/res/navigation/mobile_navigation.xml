@@ -25,6 +25,11 @@
     <fragment
         android:id="@+id/navigation_assets"
         android:name="com.ggv.cryptocurrencystore.ui.assets.AssetsFragment"
-        android:label="fragment_assets"
+        android:label="Asset"
         tools:layout="@layout/fragment_assets" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.ggv.cryptocurrencystore.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
