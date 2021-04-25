@@ -165,10 +165,12 @@ public class Asset {
     }
 
     public String getPrice_usd() {
+
         return price_usd;
     }
 
     public void setPrice_usd(String price_usd) {
+
         this.price_usd = price_usd;
     }
 
