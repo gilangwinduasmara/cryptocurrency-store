@@ -7,11 +7,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.ggv.cryptocurrencystore.R;
+import com.ggv.cryptocurrencystore.models.Users;
 import com.ggv.cryptocurrencystore.services.AuthService;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -19,7 +23,12 @@ import org.json.JSONObject;
  * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
+
 public class ProfileFragment extends Fragment {
+
+    private EditText editTextUsername, editTextName, editTextEmail;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,21 +70,34 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        editTextUsername = view.findViewById(R.id.edtUsername);
+        editTextName = view.findViewById(R.id.edtName);
+        editTextEmail = view.findViewById(R.id.edtEmail);
 
 //        Textview textViewBlabla = view.findById(blabla)
         AuthService authService = new AuthService(getActivity());
+
         authService.getUser(new AuthService.ResultListener() {
             @Override
             public void onSuccess(JSONObject response) {
-//                User user = new User();
-//                user.setName(response.getString("name"))
+              Users user = new Users();
+                try {
+                    user.setUsername(response.getString("Username"));
+                    user.setName(response.getString("Name"));
+                    user.setEmail(response.getString("Email"));
+                    editTextUsername.setText(user.getUsername());
+                    editTextName.setText(user.getName());
+                    editTextEmail.setText(user.getEmail());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-
             @Override
             public void onFail(JSONObject response) {
 
