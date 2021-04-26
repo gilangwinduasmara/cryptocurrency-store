@@ -1,8 +1,10 @@
 package com.ggv.cryptocurrencystore.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
-public class Asset {
+public class Asset implements Parcelable {
     private String asset_id;
     private String name;
     private String type_is_crypto;
@@ -187,7 +189,81 @@ public class Asset {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.asset_id);
+        dest.writeString(this.name);
+        dest.writeString(this.type_is_crypto);
+        dest.writeString(this.data_start);
+        dest.writeString(this.data_end);
+        dest.writeString(this.data_quote_start);
+        dest.writeString(this.data_quote_end);
+        dest.writeString(this.data_orderbook_start);
+        dest.writeString(this.data_orderbook_end);
+        dest.writeString(this.data_trade_start);
+        dest.writeString(this.data_trade_end);
+        dest.writeString(this.data_symbols_count);
+        dest.writeString(this.volume_1hrs_usd);
+        dest.writeString(this.volume_1day_usd);
+        dest.writeString(this.volume_1mth_usd);
+        dest.writeString(this.price_usd);
+        dest.writeString(this.id_icon);
+    }
 
+    public void readFromParcel(Parcel source) {
+        this.asset_id = source.readString();
+        this.name = source.readString();
+        this.type_is_crypto = source.readString();
+        this.data_start = source.readString();
+        this.data_end = source.readString();
+        this.data_quote_start = source.readString();
+        this.data_quote_end = source.readString();
+        this.data_orderbook_start = source.readString();
+        this.data_orderbook_end = source.readString();
+        this.data_trade_start = source.readString();
+        this.data_trade_end = source.readString();
+        this.data_symbols_count = source.readString();
+        this.volume_1hrs_usd = source.readString();
+        this.volume_1day_usd = source.readString();
+        this.volume_1mth_usd = source.readString();
+        this.price_usd = source.readString();
+        this.id_icon = source.readString();
+    }
 
+    protected Asset(Parcel in) {
+        this.asset_id = in.readString();
+        this.name = in.readString();
+        this.type_is_crypto = in.readString();
+        this.data_start = in.readString();
+        this.data_end = in.readString();
+        this.data_quote_start = in.readString();
+        this.data_quote_end = in.readString();
+        this.data_orderbook_start = in.readString();
+        this.data_orderbook_end = in.readString();
+        this.data_trade_start = in.readString();
+        this.data_trade_end = in.readString();
+        this.data_symbols_count = in.readString();
+        this.volume_1hrs_usd = in.readString();
+        this.volume_1day_usd = in.readString();
+        this.volume_1mth_usd = in.readString();
+        this.price_usd = in.readString();
+        this.id_icon = in.readString();
+    }
+
+    public static final Parcelable.Creator<Asset> CREATOR = new Parcelable.Creator<Asset>() {
+        @Override
+        public Asset createFromParcel(Parcel source) {
+            return new Asset(source);
+        }
+
+        @Override
+        public Asset[] newArray(int size) {
+            return new Asset[size];
+        }
+    };
 }
