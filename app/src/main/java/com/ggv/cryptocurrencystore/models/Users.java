@@ -9,10 +9,10 @@ public class Users {
 
     }
 
-    public Users(String Username, String Name, String Email){
-        this.Username = Username;
-        this.Name = Name;
-        this.Email = Email;
+    public Users(String username, String name, String email){
+        this.Username = username;
+        this.Name = name;
+        this.Email = email;
 
     }
 
