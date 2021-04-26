@@ -12,10 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CryptocurrencyStore"
         android:usesCleartextTraffic="true">
+        <activity android:name=".TransactionActivity"></activity>
         <activity
             android:name=".DashboardActivity"
-            android:theme="@style/Theme.Dashboard"
-            android:label="@string/title_activity_dashboard"></activity>
+            android:label="@string/title_activity_dashboard"
+            android:theme="@style/Theme.Dashboard" />
         <activity android:name=".OnBoardingActivity" />
         <activity android:name=".auth.RegisterActivity" />
         <activity android:name=".auth.LoginActivity" />

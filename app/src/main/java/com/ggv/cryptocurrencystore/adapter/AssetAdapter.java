@@ -1,5 +1,7 @@
 package com.ggv.cryptocurrencystore.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ggv.cryptocurrencystore.R;
+import com.ggv.cryptocurrencystore.TransactionActivity;
 import com.ggv.cryptocurrencystore.models.Asset;
 import com.squareup.picasso.Picasso;
 
@@ -19,9 +22,11 @@ import java.util.List;
 
 public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.ViewHolder> {
     List<Asset> assets;
+    Context context;
 
-    public AssetAdapter(List<Asset> assets){
+    public AssetAdapter(List<Asset> assets, Context context){
         this.assets = assets;
+        this.context = context;
     }
 
     @NonNull
@@ -34,7 +39,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull AssetAdapter.ViewHolder holder, int position) {
-        Asset asset = assets.get(position);
+        final Asset asset = assets.get(position);
         holder.textViewName.setText(asset.getName());
         holder.textViewHarga.setText(asset.getPrice_usd());
         if(asset.getId_icon() != null) {
@@ -43,7 +48,9 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.ViewHolder> 
         holder.cardViewAsset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("cardview", asset.getName());
+                Intent intent = new Intent(context, TransactionActivity.class);
+                intent.putExtra("asset", asset);
+                context.startActivity(intent);
             }
         });
     }
