@@ -115,7 +115,7 @@ public class AssetsFragment extends Fragment {
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
                     recyclerView = view.findViewById(R.id.recyclerViewAsset);
                     recyclerView.setLayoutManager(layoutManager);
-                    AssetAdapter adapter = new AssetAdapter(assets);
+                    AssetAdapter adapter = new AssetAdapter(assets, getActivity());
                     recyclerView.setAdapter(adapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
