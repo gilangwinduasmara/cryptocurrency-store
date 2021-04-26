@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView txtRegis;
     Button btnmasuk;
     Intent intent;
+    TextView textViewLoginError;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword =findViewById(R.id.editTextPassword);
         btnmasuk = findViewById(R.id.btnMasuk);
         txtRegis = findViewById(R.id.txtRegis);
+        textViewLoginError = findViewById(R.id.textViewLoginError);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -43,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         btnmasuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                textViewLoginError.setVisibility(View.INVISIBLE);
                 authService.login(editTextUsername.getText().toString(), editTextPassword.getText().toString(), new AuthService.ResultListener() {
                     @Override
                     public void onSuccess(JSONObject response) {
@@ -61,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onFail(JSONObject response) {
                         Log.d("login", response.toString());
+                        textViewLoginError.setVisibility(View.VISIBLE);
                     }
 
                     @Override

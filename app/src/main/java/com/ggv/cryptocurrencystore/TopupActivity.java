@@ -57,6 +57,7 @@ public class TopupActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(JSONObject response) {
                         Log.d("topup", response.toString());
+                        setResult(RESULT_OK);
                         finish();
                     }
 

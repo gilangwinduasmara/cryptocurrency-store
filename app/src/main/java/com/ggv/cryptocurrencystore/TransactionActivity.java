@@ -98,4 +98,8 @@ public class TransactionActivity extends AppCompatActivity {
         });
     }
 
+    public void back(View view){
+        onBackPressed();
+    }
+
 }

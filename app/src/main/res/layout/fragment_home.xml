@@ -97,6 +97,7 @@
                 android:id="@+id/recyclerViewTransaction"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingBottom="64dp"
                 android:paddingTop="2dp" />
         </LinearLayout>
 

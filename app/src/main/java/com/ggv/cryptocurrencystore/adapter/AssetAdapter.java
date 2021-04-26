@@ -43,7 +43,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.ViewHolder> 
         holder.textViewName.setText(asset.getName());
         holder.textViewHarga.setText(asset.getPrice_usd());
         if(asset.getId_icon() != null) {
-            Picasso.get().load("https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_16/"+asset.getId_icon()).into(holder.imageView);
+            Picasso.get().load("https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_64/"+asset.getId_icon()).into(holder.imageView);
         }
         holder.cardViewAsset.setOnClickListener(new View.OnClickListener() {
             @Override

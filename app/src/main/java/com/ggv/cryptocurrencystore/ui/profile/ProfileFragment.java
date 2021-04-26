@@ -1,10 +1,12 @@
 package com.ggv.cryptocurrencystore.ui.profile;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,6 +98,9 @@ public class ProfileFragment extends Fragment {
         txtLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.remove("token").commit();
                 intent = new Intent(getActivity(), LoginActivity.class);
                 getActivity().finish();
                 startActivity(intent);

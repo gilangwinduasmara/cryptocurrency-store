@@ -1,5 +1,6 @@
 package com.ggv.cryptocurrencystore.ui.home;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,6 +44,19 @@ public class HomeFragment extends Fragment {
     private MaterialButton materialButtonTopup;
     private TextView textViewName;
     private TextView textViewBalance;
+    TransactionService transactionService;
+    AuthService authService;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 100){
+            if(resultCode == Activity.RESULT_OK){
+                updateData();
+            }
+        }
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -57,13 +71,25 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), TopupActivity.class);
-                startActivity(i);
+                startActivityForResult(i, 100);
             }
         });
 
-        TransactionService transactionService = new TransactionService(getActivity());
-        AuthService authService = new AuthService(getActivity());
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewTransaction);
+        transactionService = new TransactionService(getActivity());
+        authService = new AuthService(getActivity());
+        recyclerView = view.findViewById(R.id.recyclerViewTransaction);
+        updateData();
+//        final TextView textView = root.findViewById(R.id.text_home);
+//        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
+        return view;
+    }
+
+    void updateData(){
         transactionService.get(new AssetService.ResultListener() {
             @Override
             public void onSuccess(JSONObject response) {
@@ -144,14 +170,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-//        final TextView textView = root.findViewById(R.id.text_home);
-//        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
-        return view;
     }
 
 }

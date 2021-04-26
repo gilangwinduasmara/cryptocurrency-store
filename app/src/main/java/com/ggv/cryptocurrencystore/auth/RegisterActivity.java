@@ -63,74 +63,57 @@ public class RegisterActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                editTxtName.setError(null);
+                editTxtUser.setError(null);
+                editTxtEmail.setError(null);
+                editTxtPas.setError(null);
+                editTxtConfir.setError(null);
                 String name = editTxtName.getText().toString();
                 String user = editTxtUser.getText().toString();
                 String email = editTxtEmail.getText().toString();
                 String password = editTxtPas.getText().toString();
                 String confirm = editTxtConfir.getText().toString();
-
-                authService.register(editTxtName.getText().toString(), editTxtUser.getText().toString(), editTxtEmail.getText().toString(), editTxtPas.getText().toString(),
-                        new AuthService.ResultListener() {
-
-                            @Override
-                            public void onSuccess(JSONObject response) {
-                                Log.d("register", response.toString());
-                                intent = new Intent(RegisterActivity.this, LoginActivity.class);
-//                                intent.putExtra("name", name);
-//                                intent.putExtra("username", user);
-//                                intent.putExtra("email", email);
-//                                intent.putExtra("password", password);
-//                                intent.putExtra("confirm", confirm);
-                                finish();
-                                startActivity(intent);
-                            }
-
-                            @Override
-                            public void onFail(JSONObject response) {
-                                Log.d("register", response.toString());
-                            }
-
-                            @Override
-                            public void onError(VolleyError error) {
-                                error.printStackTrace();
-                            }
-                        });
-
-
-
                 if(name.isEmpty()){
-                    Toast.makeText(context,"Sorry. Please Input Your Name",
-                            Toast.LENGTH_SHORT).show();
-                    return;
+                    editTxtName.setError("This field is required");
+                }if(user.isEmpty()){
+                    editTxtUser.setError("This field is required");
+                }if(email.isEmpty()){
+                    editTxtEmail.setError("This field is required");
+                }if(password.isEmpty()){
+                    editTxtPas.setError("This field is required");
+                }if(!confirm.equals(password)){
+                    editTxtConfir.setError("Password Confirmation doesnt match Password");
                 }
-                if(user.isEmpty()){
-                    Toast.makeText(context,"Sorry. Please Input Your Username",
-                            Toast.LENGTH_SHORT).show();
-                    return;
+                if(!name.isEmpty() && name.length() < 5){
+                    editTxtName.setError("Password must have atleast 5 characters");
                 }
-                if(email.isEmpty()){
-                    Toast.makeText(context,"Sorry. Please Input Your Email",
-                            Toast.LENGTH_SHORT).show();
-                    return;
+                if(!password.isEmpty() && password.length() < 8){
+                    editTxtPas.setError("Password must have atleast 8 characters");
                 }
-                if(password.isEmpty()){
-                    Toast.makeText(context,"Sorry. Please Confirm Your Password",
-                            Toast.LENGTH_SHORT).show();
-                    return;
+                if(editTxtUser.getError() == null && editTxtName.getError() == null && editTxtEmail.getError() == null && editTxtPas.getError() == null && editTxtConfir.getError() == null){
+                    authService.register(editTxtName.getText().toString(), editTxtUser.getText().toString(), editTxtEmail.getText().toString(), editTxtPas.getText().toString(),
+                            new AuthService.ResultListener() {
+
+                                @Override
+                                public void onSuccess(JSONObject response) {
+                                    Log.d("register", response.toString());
+                                    intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                    finish();
+                                    startActivity(intent);
+                                }
+
+                                @Override
+                                public void onFail(JSONObject response) {
+                                    Log.d("register", response.toString());
+                                }
+
+                                @Override
+                                public void onError(VolleyError error) {
+                                    error.printStackTrace();
+                                }
+                            });
                 }
-                if(!password.equals(confirm)){
-                    Toast.makeText(context,"Please Check Your Password",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }
-//                intent = new Intent(RegisterActivity.this, LoginActivity.class);
-//                intent.putExtra("name", name);
-//                intent.putExtra("username", user);
-//                intent.putExtra("email", email);
-//                intent.putExtra("password", password);
-//                intent.putExtra("confirm", confirm);
-//                finish();
-//                startActivity(intent);
+
             }
         });
 

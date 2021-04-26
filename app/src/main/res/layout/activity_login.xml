@@ -31,6 +31,15 @@
 
 
         <TextView
+            android:id="@+id/textViewLoginError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Sorry, that password isn't right"
+            android:textColor="#E91E63"
+            android:visibility="invisible" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Username :"
@@ -42,7 +51,8 @@
             android:id="@+id/editTextUsername"
             android:layout_width="290dp"
             android:layout_height="match_parent"
-            android:hint="Input Your Username" />
+            android:hint="Input Your Username"
+            android:inputType="textShortMessage|textPersonName" />
 
         <TextView
             android:layout_width="wrap_content"

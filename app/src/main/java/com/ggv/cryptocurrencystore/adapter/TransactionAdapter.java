@@ -52,6 +52,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }else if (transaction.getStatus().equals("TOPUP")){
             holder.textViewStatus.setText("Topup");
             holder.cardViewStatus.setCardBackgroundColor(context.getResources().getColor(R.color.purple_500));
+            holder.textViewAmmount.setVisibility(View.INVISIBLE);
+            holder.textViewTotal.setText("$"+transaction.getAmmount());
         }
         holder.cardViewTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
