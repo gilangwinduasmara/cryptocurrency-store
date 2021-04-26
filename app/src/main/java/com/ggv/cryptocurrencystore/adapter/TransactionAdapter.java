@@ -1,5 +1,6 @@
 package com.ggv.cryptocurrencystore.adapter;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +21,11 @@ import java.util.List;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     List<Transaction> transactions;
+    Context context;
 
-    public TransactionAdapter(List<Transaction> transactions){
+    public TransactionAdapter(List<Transaction> transactions, Context context){
         this.transactions = transactions;
+        this.context = context;
     }
 
     @NonNull
@@ -37,6 +40,16 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     public void onBindViewHolder(@NonNull TransactionAdapter.ViewHolder holder, int position) {
         Transaction transaction = transactions.get(position);
         holder.textViewName.setText(transaction.getAsset().getName());
+        holder.textViewAmmount.setText("x"+transaction.getAmmount()+"");
+        holder.textViewDate.setText(transaction.getCreated_at().split("T")[0]);
+        holder.textViewTotal.setText("$"+(transaction.getPrice_usd() * transaction.getAmmount())+"");
+        if(transaction.getStatus().equals("BUY")){
+            holder.textViewStatus.setText("Buy");
+            holder.cardViewStatus.setCardBackgroundColor(context.getResources().getColor(R.color.status_buy));
+        }else{
+            holder.textViewStatus.setText("Sell");
+            holder.cardViewStatus.setCardBackgroundColor(context.getResources().getColor(R.color.status_sell));
+        }
         holder.cardViewTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +68,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         private TextView textViewAmmount;
         private TextView textViewDate;
         private TextView textViewTotal;
+        private TextView textViewStatus;
         private CardView cardViewTransaction;
+        private CardView cardViewStatus;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.textViewName);
@@ -63,6 +78,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             textViewDate = itemView.findViewById(R.id.textViewDate);
             textViewAmmount = itemView.findViewById(R.id.textViewAmmount);
             cardViewTransaction = itemView.findViewById(R.id.cardViewTransaction);
+            textViewStatus = itemView.findViewById(R.id.textViewStatus);
+            cardViewStatus = itemView.findViewById(R.id.cardViewStatus);
         }
     }
 }

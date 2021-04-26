@@ -60,12 +60,14 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="468dp"
+        android:layout_width="0dp"
+        android:layout_height="441dp"
         app:cardCornerRadius="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,7 +78,9 @@
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="4dp"
                 android:text="Transaction"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="18sp"
@@ -86,7 +90,7 @@
                 android:id="@+id/recyclerViewTransaction"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="24dp" />
+                android:paddingTop="2dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
