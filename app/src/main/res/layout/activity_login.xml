@@ -42,13 +42,13 @@
             android:id="@+id/editTextUsername"
             android:layout_width="290dp"
             android:layout_height="match_parent"
-            android:hint="masukan Username" />
+            android:hint="Input Your Username" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Password :"
-            android:textSize="12sp"
+            android:textSize="14sp"
             tools:layout_editor_absoluteX="102dp"
             tools:layout_editor_absoluteY="295dp" />
 
@@ -56,7 +56,8 @@
             android:id="@+id/editTextPassword"
             android:layout_width="290dp"
             android:layout_height="match_parent"
-            android:hint="masukan password" />
+            android:hint="Input Your Password"
+            android:inputType="textPassword"/>
     </LinearLayout>
 
     <Button

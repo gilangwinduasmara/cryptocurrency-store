@@ -1,5 +1,6 @@
 package com.ggv.cryptocurrencystore.ui.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,13 +9,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.ggv.cryptocurrencystore.R;
+import com.ggv.cryptocurrencystore.auth.LoginActivity;
+import com.ggv.cryptocurrencystore.auth.RegisterActivity;
 import com.ggv.cryptocurrencystore.models.Users;
 import com.ggv.cryptocurrencystore.services.AuthService;
+import com.ggv.cryptocurrencystore.services.UserService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +35,9 @@ import org.json.JSONObject;
 public class ProfileFragment extends Fragment {
 
     private EditText editTextUsername, editTextName, editTextEmail;
+    private TextView txtLogout;
+    private Button btnSave;
+    Intent intent;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -65,6 +74,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -80,6 +90,50 @@ public class ProfileFragment extends Fragment {
         editTextUsername = view.findViewById(R.id.edtUsername);
         editTextName = view.findViewById(R.id.edtName);
         editTextEmail = view.findViewById(R.id.edtEmail);
+        txtLogout = view.findViewById(R.id.txtLogout);
+        btnSave = view.findViewById(R.id.btnSave);
+
+        txtLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getActivity(), LoginActivity.class);
+                getActivity().finish();
+                startActivity(intent);
+            }
+        });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserService userService = new UserService(getActivity());
+
+                userService.update(editTextUsername.getText().toString(), editTextName.getText().toString(), editTextEmail.getText().toString(), new UserService.ResultListener() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        Log.d("update user", response.toString());
+                        Toast.makeText(getContext(),"Update Success", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFail(JSONObject response) {
+                        Toast.makeText(getContext(),"Update Failed", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onError(VolleyError error) {
+
+                    }
+                });
+
+                //Users user = new Users();
+                //editTextName.getText(user.setName());
+               // editTextUsername.setText(getString());
+
+            }
+        });
+
 
 //        Textview textViewBlabla = view.findById(blabla)
         AuthService authService = new AuthService(getActivity());
@@ -112,5 +166,8 @@ public class ProfileFragment extends Fragment {
             }
         });
         return view;
+
+
     }
+
 }
