@@ -19,6 +19,7 @@ import com.ggv.cryptocurrencystore.auth.LoginActivity;
 import com.ggv.cryptocurrencystore.auth.RegisterActivity;
 import com.ggv.cryptocurrencystore.models.Users;
 import com.ggv.cryptocurrencystore.services.AuthService;
+import com.ggv.cryptocurrencystore.services.UserService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,7 +73,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -103,10 +104,16 @@ public class ProfileFragment extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                UserService userService = new UserService(getActivity());
+
+
+                //Users user = new Users();
+                //editTextName.getText(user.setName());
                // editTextUsername.setText(getString());
+
             }
         });
-        
+
 
 //        Textview textViewBlabla = view.findById(blabla)
         AuthService authService = new AuthService(getActivity());
@@ -142,5 +149,5 @@ public class ProfileFragment extends Fragment {
 
 
     }
-    
+
 }
