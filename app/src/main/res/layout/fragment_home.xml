@@ -27,10 +27,10 @@
             android:textColor="@color/white" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/textViewName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vania"
+            android:text="..."
             android:textColor="@color/white"
             android:textSize="30sp" />
 
@@ -45,28 +45,29 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rp"
+                android:text="$"
                 android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/textViewBalance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100.000"
                 android:textColor="@color/white"
                 android:textSize="36sp" />
         </LinearLayout>
+
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButtonTopup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Topup"
             android:layout_gravity="center"
-            />
+            android:text="Topup" />
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="441dp"
+        android:layout_height="341dp"
         app:cardCornerRadius="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

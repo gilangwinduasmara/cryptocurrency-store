@@ -1,5 +1,6 @@
 package com.ggv.cryptocurrencystore.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,12 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
 import com.ggv.cryptocurrencystore.R;
+import com.ggv.cryptocurrencystore.TopupActivity;
 import com.ggv.cryptocurrencystore.adapter.AssetAdapter;
 import com.ggv.cryptocurrencystore.adapter.TransactionAdapter;
 import com.ggv.cryptocurrencystore.models.Asset;
 import com.ggv.cryptocurrencystore.models.Transaction;
 import com.ggv.cryptocurrencystore.services.AssetService;
+import com.ggv.cryptocurrencystore.services.AuthService;
 import com.ggv.cryptocurrencystore.services.TransactionService;
+import com.ggv.cryptocurrencystore.services.UserService;
+import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,13 +40,29 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private RecyclerView recyclerView;
+    private MaterialButton materialButtonTopup;
+    private TextView textViewName;
+    private TextView textViewBalance;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        materialButtonTopup = view.findViewById(R.id.materialButtonTopup);
+        textViewName = view.findViewById(R.id.textViewName);
+        textViewBalance = view.findViewById(R.id.textViewBalance);
+
+        materialButtonTopup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), TopupActivity.class);
+                startActivity(i);
+            }
+        });
+
         TransactionService transactionService = new TransactionService(getActivity());
+        AuthService authService = new AuthService(getActivity());
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewTransaction);
         transactionService.get(new AssetService.ResultListener() {
             @Override
@@ -102,7 +123,27 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        authService.getUser(new AuthService.ResultListener() {
+            @Override
+            public void onSuccess(JSONObject response) {
+                try {
+                    textViewName.setText(response.getJSONObject("user").getString("name"));
+                    textViewBalance.setText(response.getJSONObject("user").getString("balance"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
 
+            @Override
+            public void onFail(JSONObject response) {
+
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+
+            }
+        });
 //        final TextView textView = root.findViewById(R.id.text_home);
 //        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //            @Override
@@ -112,4 +153,5 @@ public class HomeFragment extends Fragment {
 //        });
         return view;
     }
+
 }
