@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,11 +87,13 @@ public class ProfileFragment extends Fragment {
         authService.getUser(new AuthService.ResultListener() {
             @Override
             public void onSuccess(JSONObject response) {
+                Log.d("user", response.toString());
               Users user = new Users();
                 try {
-                    user.setUsername(response.getString("Username"));
-                    user.setName(response.getString("Name"));
-                    user.setEmail(response.getString("Email"));
+                    JSONObject userObject = response.getJSONObject("user");
+                    user.setUsername(userObject.getString("username"));
+                    user.setName(userObject.getString("name"));
+                    user.setEmail(userObject.getString("email"));
                     editTextUsername.setText(user.getUsername());
                     editTextName.setText(user.getName());
                     editTextEmail.setText(user.getEmail());
