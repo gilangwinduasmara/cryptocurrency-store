@@ -88,9 +88,9 @@ public class ProfileFragment extends Fragment {
             public void onSuccess(JSONObject response) {
               Users user = new Users();
                 try {
-                    user.setUsername(response.getString("Username"));
-                    user.setName(response.getString("Name"));
-                    user.setEmail(response.getString("Email"));
+                    user.setUsername(response.getString("username"));
+                    user.setName(response.getString("name"));
+                    user.setEmail(response.getString("email"));
                     editTextUsername.setText(user.getUsername());
                     editTextName.setText(user.getName());
                     editTextEmail.setText(user.getEmail());
