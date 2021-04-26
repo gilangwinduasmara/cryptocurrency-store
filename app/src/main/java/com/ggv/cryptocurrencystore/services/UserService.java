@@ -35,10 +35,17 @@ public class UserService {
         this.token = sharedPref.getString("token", "");
     }
 
-    void update(String username,String name, String email, UserService.ResultListener listener){
+    public void update(String username,String name, String email, UserService.ResultListener listener){
         String url ="http://54.151.229.213:8000/users";
         RequestQueue queue = Volley.newRequestQueue(context);
         JSONObject body = new JSONObject();
+        try {
+            body.put("username", username);
+            body.put("email", email);
+            body.put("name", name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.PUT, url, body, new Response.Listener<JSONObject>() {
 

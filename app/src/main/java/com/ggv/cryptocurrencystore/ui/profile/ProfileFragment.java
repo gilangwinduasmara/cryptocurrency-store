@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.ggv.cryptocurrencystore.R;
@@ -106,6 +107,25 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 UserService userService = new UserService(getActivity());
 
+                userService.update(editTextUsername.getText().toString(), editTextName.getText().toString(), editTextEmail.getText().toString(), new UserService.ResultListener() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        Log.d("update user", response.toString());
+                        Toast.makeText(getContext(),"Update Success", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFail(JSONObject response) {
+                        Toast.makeText(getContext(),"Update Failed", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onError(VolleyError error) {
+
+                    }
+                });
 
                 //Users user = new Users();
                 //editTextName.getText(user.setName());
