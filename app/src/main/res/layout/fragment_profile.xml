@@ -30,7 +30,7 @@
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:layout_weight="1"
-                tools:src="@tools:sample/avatars" />
+                android:src="@drawable/profile_picture_user_icon_153054" />
 
             <LinearLayout
                 android:layout_width="276dp"
