@@ -85,7 +85,7 @@ public class HomeFragment extends Fragment {
                     }
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
                     recyclerView.setLayoutManager(layoutManager);
-                    TransactionAdapter adapter = new TransactionAdapter(transactions);
+                    TransactionAdapter adapter = new TransactionAdapter(transactions, getActivity());
                     recyclerView.setAdapter(adapter);
                 }catch (JSONException e) {
                     e.printStackTrace();
