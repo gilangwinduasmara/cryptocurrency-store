@@ -44,13 +44,12 @@ public class OnBoardingActivity extends AppCompatActivity {
         setOnboardingItem();
         ViewPager2 onboardingViewPager = findViewById(R.id.onboardingViewPager);
         onboardingViewPager.setAdapter(onboardingAdapter);
-        setOnboadingIndicator();
-        setCurrentOnboardingIndicators(0);
+        updateButton(0);
         onboardingViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                setCurrentOnboardingIndicators(position);
+                updateButton(position);
             }
         });
         buttonOnboardingAction.setOnClickListener(new View.OnClickListener() {
@@ -65,32 +64,8 @@ public class OnBoardingActivity extends AppCompatActivity {
             }
         });
     }
-    private void setOnboadingIndicator() {
-        ImageView[] indicators = new ImageView[onboardingAdapter.getItemCount()];
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
-        );
-        layoutParams.setMargins(8, 0, 8, 0);
-        for (int i = 0; i < indicators.length; i++) {
-            indicators[i] = new ImageView(getApplicationContext());
-            indicators[i].setImageDrawable(ContextCompat.getDrawable(
-                    getApplicationContext(), R.drawable.ic_baseline_brightness_1_24
-            ));
-            indicators[i].setLayoutParams(layoutParams);
-            layoutOnboardingIndicator.addView(indicators[i]);
-        }
-    }
     @SuppressLint("SetTextI18n")
-    private void setCurrentOnboardingIndicators(int index) {
-        int childCount = layoutOnboardingIndicator.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            ImageView imageView = (ImageView) layoutOnboardingIndicator.getChildAt(i);
-            if (i == index) {
-                imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_brightness_1_24));
-            } else {
-                imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_baseline_arrow_right_alt_24));
-            }
-        }
+    private void updateButton(int index) {
         if (index == onboardingAdapter.getItemCount() - 1){
             buttonOnboardingAction.setText("Start");
         }else {
