@@ -2,6 +2,7 @@ package com.ggv.cryptocurrencystore.ui.assets;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +43,10 @@ public class AssetsFragment extends Fragment {
     private String mParam2;
 
     private RecyclerView recyclerView;
+    private int page;
+    List<Asset> assets = new ArrayList<>();
+    RecyclerView.LayoutManager layoutManager;
+    AssetAdapter adapter;
 
     public AssetsFragment() {
         // Required empty public constructor
@@ -80,14 +85,35 @@ public class AssetsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_assets, container, false);
 
-        AssetService assetService = new AssetService(getActivity());
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView = view.findViewById(R.id.recyclerViewAsset);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new AssetAdapter(assets, getActivity());
+        recyclerView.setAdapter(adapter);
 
-        assetService.get(new AssetService.ResultListener() {
+        updateData();
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(!recyclerView.canScrollVertically(1)){
+                    page++;
+                    updateData();
+                }
+            }
+        });
+
+        return view;
+    }
+
+    void updateData(){
+        AssetService assetService = new AssetService(getActivity());
+        assetService.get(page, new AssetService.ResultListener() {
             @Override
             public void onSuccess(JSONObject response) {
                 try {
                     Log.d("assets",response.toString());
-                    List<Asset> assets = new ArrayList<>();
                     JSONArray assetsResponse = response.getJSONArray("data");
                     for(int i = 0; i < assetsResponse.length(); i++){
                         JSONObject assetObject = assetsResponse.getJSONObject(i);
@@ -112,11 +138,8 @@ public class AssetsFragment extends Fragment {
                         assets.add(asset);
                         Log.d("asset name", asset.getName());
                     }
-                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                    recyclerView = view.findViewById(R.id.recyclerViewAsset);
-                    recyclerView.setLayoutManager(layoutManager);
-                    AssetAdapter adapter = new AssetAdapter(assets, getActivity());
-                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -132,7 +155,5 @@ public class AssetsFragment extends Fragment {
                 error.printStackTrace();
             }
         });
-
-        return view;
     }
 }

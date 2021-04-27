@@ -37,8 +37,8 @@ public class AssetService {
     }
 
 
-    public void get(AssetService.ResultListener listener){
-        String url ="http://54.151.229.213:8000/assets";
+    public void get(int page, AssetService.ResultListener listener){
+        String url ="http://54.151.229.213:8000/assets?page="+page;
 
         RequestQueue queue = Volley.newRequestQueue(context);
         JSONObject body = new JSONObject();
