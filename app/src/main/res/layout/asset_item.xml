@@ -31,38 +31,49 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="24dp">
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="24dp"
-                    android:layout_height="23dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <TextView
                     android:id="@+id/textViewName"
-                    android:layout_width="326dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/textViewHarga"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="13dp"
-                android:text="TextView" />
-
             <LinearLayout
-                android:layout_width="136dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/textViewHarga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:padding="8dp"
+                    android:text="TextView"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textViewCryptoBalance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="TextView"
+                    android:textAlignment="textEnd" />
             </LinearLayout>
 
         </LinearLayout>

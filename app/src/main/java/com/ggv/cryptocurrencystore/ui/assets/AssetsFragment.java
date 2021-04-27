@@ -135,6 +135,7 @@ public class AssetsFragment extends Fragment {
                         asset.setVolume_1mth_usd(assetObject.getString("volume_1mth_usd"));
                         asset.setPrice_usd(assetObject.getString("price_usd"));
                         asset.setId_icon(assetObject.getString("id_icon"));
+                        asset.setCrypto_balance(assetObject.getString("user_balance"));
                         assets.add(asset);
                         Log.d("asset name", asset.getName());
                     }

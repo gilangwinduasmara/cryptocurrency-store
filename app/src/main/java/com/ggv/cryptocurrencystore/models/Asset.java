@@ -22,6 +22,15 @@ public class Asset implements Parcelable {
     private String volume_1mth_usd;
     private String price_usd;
     private String id_icon;
+    private String crypto_balance;
+
+    public String getCrypto_balance() {
+        return crypto_balance;
+    }
+
+    public void setCrypto_balance(String crypto_balance) {
+        this.crypto_balance = crypto_balance;
+    }
 
     public Asset() {
     }
@@ -213,6 +222,7 @@ public class Asset implements Parcelable {
         dest.writeString(this.volume_1mth_usd);
         dest.writeString(this.price_usd);
         dest.writeString(this.id_icon);
+        dest.writeString(this.crypto_balance);
     }
 
     public void readFromParcel(Parcel source) {
@@ -233,6 +243,7 @@ public class Asset implements Parcelable {
         this.volume_1mth_usd = source.readString();
         this.price_usd = source.readString();
         this.id_icon = source.readString();
+        this.crypto_balance = source.readString();
     }
 
     protected Asset(Parcel in) {
@@ -253,6 +264,7 @@ public class Asset implements Parcelable {
         this.volume_1mth_usd = in.readString();
         this.price_usd = in.readString();
         this.id_icon = in.readString();
+        this.crypto_balance = in.readString();
     }
 
     public static final Parcelable.Creator<Asset> CREATOR = new Parcelable.Creator<Asset>() {

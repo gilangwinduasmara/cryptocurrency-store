@@ -42,6 +42,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.ViewHolder> 
         final Asset asset = assets.get(position);
         holder.textViewName.setText(asset.getName());
         holder.textViewHarga.setText(asset.getPrice_usd());
+        holder.textViewCryptoBalance.setText(asset.getCrypto_balance());
         if(asset.getId_icon() != null) {
             Picasso.get().load("https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_64/"+asset.getId_icon()).into(holder.imageView);
         }
@@ -61,7 +62,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textViewName, textViewHarga;
+        private TextView textViewName, textViewHarga, textViewCryptoBalance;
         private CardView cardViewAsset;
         private ImageView imageView;
         public ViewHolder(@NonNull View itemView) {
@@ -70,6 +71,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.ViewHolder> 
             cardViewAsset = itemView.findViewById(R.id.cardViewAsset);
             imageView = itemView.findViewById(R.id.imageView);
             textViewHarga = itemView.findViewById(R.id.textViewHarga);
+            textViewCryptoBalance = itemView.findViewById(R.id.textViewCryptoBalance);
         }
     }
 }
